@@ -26,7 +26,7 @@ def xml2obj(src):
             return 1
         def __getitem__(self, key):
             if isinstance(key, basestring):
-                return self._attrs.get(key,None)
+                return self._attrs.get(key)
             else:
                 return [self][key]
         def __contains__(self, name):
@@ -37,7 +37,7 @@ def xml2obj(src):
             if name.startswith('__'):
                 # need to do this for Python special methods???
                 raise AttributeError(name)
-            return self._attrs.get(name,None)
+            return self._attrs.get(name)
         def _add_xml_attr(self, name, value):
             if name in self._attrs:
                 # multiple attribute of the same name are represented by a list
@@ -90,11 +90,11 @@ def xml2obj(src):
         xml.sax.parse(src, builder)
     return builder.root._attrs.values()[0]
 
-def xml2json(src, prettifiers=[]):
+def xml2json(src, prettifiers=dict()):
     enc = simplejson.JSONEncoder()
     return enc.encode(xml2struct(src, prettifiers))
 
-def xml2struct(src, prettifiers=[], ignore=list()):
+def xml2struct(src, prettifiers=dict(), ignore=list()):
     non_id_char = re.compile('[^_0-9a-zA-Z]')
     def _name_mangle(name):
         return unicode(non_id_char.sub('', name))
