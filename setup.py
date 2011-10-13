@@ -11,11 +11,6 @@ setup(
     packages=['visutils'],
     zip_safe=False,
     platforms='any',
-    dependency_links = [
-    i,
-    install_requires=[
-        #'distribute>=0.6.19',
-    ],
     classifiers=[
         'Development Status :: Alpha',
         'Environment :: Web Environment',
