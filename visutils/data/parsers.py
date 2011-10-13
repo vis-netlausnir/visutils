@@ -89,17 +89,17 @@ def parse_iso_date2str(obj):
         return obj
 
 
-def format_sap_period(obj):
+def format_sap_period(value):
     try:
-        strDates = str(obj).split('-')
+        strDates = str(value).split('-')
         if len(strDates) == 2:
             newDate = datetime.datetime.strptime(strDates[0], '%d%m%Y').strftime("%d.%m.%y")
             newDate = newDate + ' - ' + datetime.datetime.strptime(strDates[1], '%d%m%Y').strftime("%d.%m.%y")
             return newDate
         else:
-            return obj
+            return value
     except:
-        return obj
+        return value
 
 
 def remove_xml_version(src):

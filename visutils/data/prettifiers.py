@@ -1,3 +1,4 @@
+# encoding=utf-8
 import re
 import decimal
 import datetime
@@ -110,24 +111,25 @@ def convert_empty_dict_to_string(tree):
     return tree
 
 
-def _parse_native_type(obj, types=list(), function=None):
+def _parse_native_type(value, types=list(), function=None):
     if function is not None:
-        return function(obj)
+        return function(value)
     for t in types:
         try:
             if t.__name__ == 'datetime':
                 try:
-                    return datetime.datetime.strptime(str(obj), "%d.%m.%Y %H:%M")
+                    return datetime.datetime.strptime(str(value), "%d.%m.%Y %H:%M")
                 except:
                     try:
-                        return datetime.datetime.strptime(str(obj), "%d.%m.%Y")
+                        return datetime.datetime.strptime(str(value), "%d.%m.%Y")
                     except:
                         continue
-            return t(obj)
+            return t(value)
         except:
             continue
-    return obj
+    return value
 
+SKIP_KEYS = ['ssid','@ssid','Persidno','id','policyNumber','ownerSSN']
 def parse_native_types(tree, types=list(), functions=dict()):
     '''
     Checks if string values can be converted to native types and does so.
@@ -145,7 +147,7 @@ def parse_native_types(tree, types=list(), functions=dict()):
     if isinstance(tree, dict):
         for key in tree.keys():
 
-            if key in ('ssid','@ssid','Persidno','id','policyNumber','ownerSSN'): continue
+            if key in SKIP_KEYS: continue
             if type(tree[key]) in _SEQ_TYPES:
                 parse_native_types(tree[key], types=types, functions=functions)
             elif key in functions.keys():
