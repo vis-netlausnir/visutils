@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='visutils',
-    version='0.0.2',
+    version='0.0.3',
     url="http://github.com/vis-netlausnir/visutils/",
     license="BSD",
     author="Netlausnir VIS",
