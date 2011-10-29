@@ -8,7 +8,7 @@ setup(
     author="Netlausnir VIS",
     author_email="netlausnir@vis.is",
     description="Various Handy Utilities",
-    packages=['visutils'],
+    packages=['visutils','visutils.data','visutils.django','visutils.isl'],
     zip_safe=False,
     platforms='any',
     classifiers=[
