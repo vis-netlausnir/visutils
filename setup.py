@@ -1,4 +1,5 @@
-from setuptools import setup
+import os
+from setuptools import setup, find_packages
 
 setup(
     name='visutils',
@@ -8,7 +9,8 @@ setup(
     author="Netlausnir VIS",
     author_email="netlausnir@vis.is",
     description="Various Handy Utilities",
-    packages=['visutils','visutils.data','visutils.django','visutils.isl'],
+    packages=['visutils'],
+    packages=find_packages(),
     zip_safe=False,
     platforms='any',
     classifiers=[
