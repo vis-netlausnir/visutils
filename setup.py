@@ -3,13 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='visutils',
-    version='0.0.3',
+    version='0.0.4',
     url="http://github.com/vis-netlausnir/visutils/",
     license="BSD",
     author="Netlausnir VIS",
     author_email="netlausnir@vis.is",
     description="Various Handy Utilities",
-    packages=['visutils'],
     packages=find_packages(),
     zip_safe=False,
     platforms='any',
